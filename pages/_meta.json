@@ -1,15 +1,19 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "layout": "Layout",
+  "Home": "Home Page",
+
+
+
+
   "about": {
     "title": "About",
     "type": "page"
   },
   "contact": {
-    "title": "Contact ↗",
+    "title": "To Project ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://documentation-et-ech.vercel.app/",
     "newWindow": true
   }
 }
