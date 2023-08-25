@@ -1,0 +1,25 @@
+# Fetching Products
+
+## getServerSideProps
+
+[`getServerSideProps`](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props) function is specific to server-side rendering (SSR).\
+It allows us to fetch data on the server before rendering the components .\
+It makes sure that the data is available at the time the page is requested by the client.
+
+```js showLineNumbers filename="API.js "
+async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  return {
+    props: {
+      products: products.map(db.convertDocToObj),
+    },
+  };
+}
+```
+
+2. connects to the database
+3. retrieves a list of products using the Product model
+   - [`Product.find()`](https://mongoosejs.com/docs/queries.html) is used to retrieve a list of documents from the "Product" collection in my database
+   - [`.lean()`](https://mongoosejs.com/docs/tutorials/lean.html) method is used to convert Mongoose documents into plain JavaScript objects
+4. converts the results to plain JavaScript objects, and returns them as a property called products

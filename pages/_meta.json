@@ -3,9 +3,6 @@
   "layout": "Layout",
   "Home": "Home Page",
 
-
-
-
   "about": {
     "title": "About",
     "type": "page"
