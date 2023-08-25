@@ -1,4 +1,5 @@
 {
     "index": "Data Interaction",
-    "Fetch":"Fetching Products"
+    "FetchAll":"Fetch All Products",
+    "FetchOne":"Fetch By Slug"
 }

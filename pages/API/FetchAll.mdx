@@ -1,4 +1,4 @@
-# Fetching Products
+# Fetching All Products
 
 ## getServerSideProps
 
@@ -12,7 +12,7 @@ async function getServerSideProps() {
   const products = await Product.find().lean();
   return {
     props: {
-      products: products.map(db.convertDocToObj),
+      products: products.map(db.convertDocOptToObj),
     },
   };
 }
@@ -22,4 +22,18 @@ async function getServerSideProps() {
 3. retrieves a list of products using the Product model
    - [`Product.find()`](https://mongoosejs.com/docs/queries.html) is used to retrieve a list of documents from the "Product" collection in my database
    - [`.lean()`](https://mongoosejs.com/docs/tutorials/lean.html) method is used to convert Mongoose documents into plain JavaScript objects
-4. converts the results to plain JavaScript objects, and returns them as a property called products
+
+lean is doing the convertion but i still need to convert **<strong>id</strong>** , **<strong>createdAt</strong>** and **<strong> updatedAt</strong>** properties in my product model
+
+![Hello](/../public/images/ProductModel.png)
+
+4. `db.convertDocOptToObj` converts the left properties to plain JavaScript objects and returns products as props to make it available to the component that's being rendered
+
+```js showLineNumbers filename="db.js "
+function convertDocOptToObj(doc) {
+  doc._id = doc._id.toString();
+  doc.createdAt = doc.createdAt.toString();
+  doc.updatedAt = doc.updatedAt.toString();
+  return doc;
+}
+```
