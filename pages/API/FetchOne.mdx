@@ -1,1 +1,40 @@
+import { jsx, css } from '@emotion/react';
+
 # Fetching Product by Slug
+
+## Get Slug
+
+I need to first find a way to access slug (let's say is <strong>superbook-pro</strong>) in URL ( localhost:3000/Product/superbook-pro )
+so then i can find the requested product
+![URL Sample](/../public/images/URLSample.png)
+
+## Context
+
+Context is an object used to carry important details like request parameters, headers, and authentication data.\
+Here, i use `context.params.slug` to access the 'slug' parameter from the URL
+
+```js showLineNumbers filename="API.js "
+async function FetchOneProduct(context) {
+  const { params } = context;
+  const { slug } = params;
+  await db.connect();
+  const product = await Product.findOne({ slug }).lean();
+  await db.disconnect();
+  return {
+    props: {
+      product: product ? db.convertDocOptToObj(product) : null,
+    },
+  };
+}
+```
+
+## Find Product
+
+After connecting to Database is time to fetch \
+line5: fetch a single product
+
+- [`findOne({ slug })`](https://mongoosejs.com/docs/queries.html) It's querying the database to find a single document where the slug field matches the value extracted earlier from the params ( Let's say <strong>lenovo-flex-5</strong> ).
+- [`.lean()`](https://mongoosejs.com/docs/tutorials/lean.html) method is used to convert Mongoose documents into plain JavaScript objects
+
+line7: If product exists in database, `db.convertDocOptToObj` converts the left properties (id , createdAt , updatedAt) to plain JavaScript objects.\
+then returns products as props to make it available to the component that's being rendered (ProductScreen)
