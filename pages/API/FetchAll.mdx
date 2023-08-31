@@ -18,10 +18,11 @@ async function getServerSideProps() {
 }
 ```
 
-2. connects to the database
-3. retrieves a list of products using the Product model
-   - [`Product.find()`](https://mongoosejs.com/docs/queries.html) is used to retrieve a list of documents from the "Product" collection in my database
-   - [`.lean()`](https://mongoosejs.com/docs/tutorials/lean.html) method is used to convert Mongoose documents into plain JavaScript objects
+After connecting to Database \
+L3. retrieves a list of products using the Product model (From models file)
+
+- [`Product.find()`](https://mongoosejs.com/docs/queries.html) is used to retrieve a list of documents from the "Product" collection in my database
+- [`.lean()`](https://mongoosejs.com/docs/tutorials/lean.html) method is used to convert Mongoose documents into plain JavaScript objects
 
 lean is doing the convertion but i still need to convert **<strong>id</strong>** , **<strong>createdAt</strong>** and **<strong> updatedAt</strong>** properties in my product model
 
