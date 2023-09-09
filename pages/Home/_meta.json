@@ -1,4 +1,5 @@
 {
     "index":"Home Page",
-    "Product":"Product list"
+    "ProductItem":"Product Item",
+    "slider":"Slider"
 }

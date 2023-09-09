@@ -1,0 +1,31 @@
+# Product Item
+
+Product item Component represents an individual product with its image, name, brand, and price.
+Clicking on the image or product name takes users to the individual product page.
+
+```js filename="ProductItem.js"  copy
+export default function ProductItem({ product }) {
+  return (
+    <article className="flex flex-col">
+      <Link href={`/Product/${product.slug}`}>
+        <img
+          src={product.image}
+          alt={product.name}
+          className="cursor-pointer"
+        />
+      </Link>
+      <div className="flex flex-col items-start justify-center p-5">
+        <Link href={`/product/${product.slug}`}>
+          <a>
+            <h2 className="text-lg">{product.name}</h2>
+          </a>
+        </Link>
+        <p className="mb-2">{product.brand}</p>
+        <p className="font-bold">${product.price}</p>
+      </div>
+    </article>
+  );
+}
+```
+
+![Product Item](/../public/images/products.png)
