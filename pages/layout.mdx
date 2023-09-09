@@ -1,33 +1,44 @@
 # Layout
 
-```js filename="demo.js" {3} copy
-let a = 1;
+The Layout component sets up the basic structure for all webpages \
+It receives two properties :
 
-console.log(a);
+- **_title_** (for the webpage title)
+
+* **_children_** (for the page content)
+
+```js filename="Layout.js"  copy
+export default function Layout({ title, children }) {
+  return (
+    <>
+      <Head>
+        <title>{title ? title + " - TechShop" : "TechShop"}</title>
+        <meta name="description" content="Ecommerce Website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="Logo.png" />
+      </Head>
+      <div className="flex min-h-screen flex-col justify-between ">
+        <header>
+          <Announcement />
+          <Navbar />
+        </header>
+        <main className="container m-auto mt-4 px-4">{children}</main>
+        <Footer />
+      </div>
+    </>
+  );
+}
 ```
 
-## Component
+## Purpose of the Layout Component
 
-import { useState } from 'react';
+By using the Layout component, all pages of the website share the same Navbar , Footer,and other essential components (Like Announcement).
+Acting as a common "parent" component, it encapsulates the fundamental layout elements and ensures that each page follows a unified design pattern.
 
-{/* Import CSS modules */}
-import styles from '../components/counters.module.css'
+## Common Components
 
-export const Counter = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <div>
-      <button onClick={() => setCount(count + 1)} className={styles.counter}>
-        Clicked {count} times
-      </button>
-    </div>
-  );
-};
-
-<Counter />
-
-## External Component
-
-import Counters from '../components/counters';
-
-<Counters />
+```
+<Announcement />
+<Navbar />
+<Footer />
+```

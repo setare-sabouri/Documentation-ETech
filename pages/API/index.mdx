@@ -1,10 +1,23 @@
 # Data Interaction
 
-Fetching Products from Mongo Db
-
-## Static Data
-
-Products are Static data in Mongo DB ,
-in order to show them on page i'm going to preload them using SSR rendering
-
 ## CRUD Operations
+
+- `Create` : seed.js file is the beginning point to set Database
+
+```js filename="seed.js copy
+const handler = async (req, res) => {
+  await db.connect();
+  await User.deleteMany();
+  await User.insertMany(data.users);
+  await Product.deleteMany();
+  await Product.insertMany(data.products);
+  await db.disconnect();
+  res.send({ message: "seeded successfully" });
+};
+```
+
+- `Read`: Functions in /utils/API.js file
+
+* `Update`:
+
+- `Delete`:
