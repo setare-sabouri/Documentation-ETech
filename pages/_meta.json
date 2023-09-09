@@ -2,6 +2,8 @@
   "index": "Introduction",
   "layout": "Layout",
   "Home": "Home Page",
+  "Product":"Product page",
+  "Login":"Login Page",
 
   "about": {
     "title": "About",
