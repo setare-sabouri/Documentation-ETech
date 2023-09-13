@@ -1,38 +1,85 @@
 # Slider Component
 
-Slider component is powered by Swiper.
+The Slider component uses the React Slick library for creating a slider.
 
-```js filename="slider.js"  copy
-const Slider = () => {
+```js filename="Slider.js"  copy
+const Slidercmp = () => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+  };
+
   return (
-    <Swiper
-      className="md**:w-70 xs**:w-60 lg:w-70 h-auto "
-      modules={[Navigation, Scrollbar, A11y]}
-      spaceBetween={50}
-      slidesPerView={1}
-      navigation
-      scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
-    >
-      <SwiperSlide>
-        <img src="./images/slider.png" />
-      </SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-    </Swiper>
+    <Slider {...settings}>
+      <div>
+        <img src="./images/banner/ROG-Zephyrus-banner-2.jpg" alt="Banner 1" />
+      </div>
+      <div>
+        <img src="./images/banner/wide-range-of-laptops.jpg" alt="Banner 2" />
+      </div>
+      <div>
+        <img
+          src="./images/banner/MSI-AMG-Stealth16-banner2.jpg"
+          alt="Banner 3"
+        />
+      </div>
+      <div>
+        <img src="./images/banner/g5-gaming-banner2.jpg" alt="Banner 4" />
+      </div>
+    </Slider>
   );
 };
 ```
 
-## The Swiper component is configured with various options
+## The Slidercmp component is configured with various options:
 
-- **modules**: We include navigation, scrollbar, and accessibility modules.
-- **spaceBetween**: It sets the space between slides.
-- **slidesPerView**: It determines the number of slides visible at once (1 in this case).
-- **navigation**: Enables navigation arrows.
-- **scrollbar**: Configures a draggable scrollbar.
-- **Event handlers** (onSwiper and onSlideChange) are also provided for customization.
+- **infinite** : Enables infinite loop for the slider.
+- **speed** : Sets the slide transition speed.
+- **slidesToShow** : Determines the number of slides visible at once (1 in this case).
+- **slidesToScroll** : Sets the number of slides to scroll at a time (1 in this case).
+- **nextArrow and prevArrow** : Customizes the navigation arrows.
 
-  Inside the Swiper component, we have multiple SwiperSlide components, each containing content for a slide.
+![Products](/../public/images/slider.png)
+
+## Custom Arrows
+
+CustomNextArrow and CustomPrevArrow components are used to customize the navigation arrows.
+
+```js filename="Slider.js"  copy
+const CustomNextArrow = (props) => (
+  <div
+    className={props.className}
+    style={{
+      ...props.style,
+      display: "block",
+      width: "50px",
+      height: "50px",
+      zIndex: 2,
+    }}
+    onClick={props.onClick}
+  >
+    Next
+  </div>
+);
+
+const CustomPrevArrow = (props) => (
+  <div
+    className={props.className}
+    style={{
+      ...props.style,
+      display: "block",
+      width: "50px",
+      height: "50px",
+      zIndex: 2,
+      left: 0,
+    }}
+    onClick={props.onClick}
+  >
+    Prev
+  </div>
+);
+```
