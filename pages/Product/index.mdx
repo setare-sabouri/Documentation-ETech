@@ -1,7 +1,40 @@
 # Product Component
 
+## How to get here ?
+
+When a Product card (in ProductItem.js file) is clicked , we get redirected to [slug].js file, to see more details upon it
+
+```js filename="ProductItem.js"  copy
+<Link href={`/product/${product.slug}`}>
+  <a>
+    <h2 className="text-lg">{product.name}</h2>
+  </a>
+</Link>
+```
+
+![Product Screen](/../public/images/slug.png)
+
+So [slug].js file is rendered
+![Product screen](/../public/images/ProductScreen.png)
+The `ProductScreen` component displays product details and allows users to add the product to their cart
+
 ```js filename="[slug].js"  copy
 
 ```
 
-![Product Item](/../public/images/ProductItem.png)
+## More
+
+Destructuring Props: The product prop is destructured from the props object. This prop likely contains information about the product to be displayed on the screen.
+
+Context API: The useContext hook is used to access the global state and dispatch functions from the Store context. This allows the component to interact with the application's state.
+
+Handling Missing Product: If the product is not available (likely null or undefined), the component renders a message indicating that the product was not found.
+
+## this moves to next file ! myb
+
+addToCartHandler Function: This function is called when the "Add to Cart" button is clicked. It performs the following steps:
+
+It checks if the product already exists in the cart using the existItem variable.
+It calculates the quantity to be added to the cart, either incrementing the existing quantity or setting it to 1 if the product is not in the cart.
+It checks if the product is in stock by comparing the available stock quantity (product.countInStock) with the desired quantity.
+If the product is in stock, it dispatches an action to add the product to the cart using the dispatch function. The action includes the product details and quantity.
